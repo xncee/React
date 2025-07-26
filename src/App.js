@@ -4,7 +4,7 @@ import ConditionalRender from './3.0 Conditional Rendering/ConditionalRender';
 import { useState } from 'react';
 import ViewList from './4.0 Lists/ViewList';
 import UserCard from './4.0 Lists/UserCard';
-import { Planet } from './4.0 Lists/Planet';
+import Planet from './4.0 Lists/Planet';
 
 function App() {
   const planets = [ 
