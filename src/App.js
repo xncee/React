@@ -7,28 +7,34 @@ import UserCard from './4.0 Lists/UserCard';
 import Planet from './4.0 Lists/Planet';
 
 function App() {
-  const planets = [ 
-  { name: "Mercury", isGasPlanet: false }, 
-  { name: "Venus", isGasPlanet: false }, 
-  { name: "Earth", isGasPlanet: false }, 
-  { name: "Mars", isGasPlanet: false }, 
-  { name: "Jupiter", isGasPlanet: true }, 
-  { name: "Saturn", isGasPlanet: true }, 
-  { name: "Uranus", isGasPlanet: true }, 
-  { name: "Neptune", isGasPlanet: true } 
-];
+	const [count, setCount] = useState(0);
 
-  return ( 
-    <div className="App">
-      {/* <ComponentExample /> */}
-      {/* <CssExample /> */}
-      {
-        planets.map((planet, index) => (
-          planet.isGasPlanet && <Planet key={index} name={planet.name}/>
-        ))
-      }
-    </div>
-  );
+	return (
+		<div style={{
+        margin: "0 auto", 
+        textAlign: "center"
+    }}>
+			<h1>
+        {count}
+      </h1>
+
+      <button
+				onClick={() => {setCount(count+1)}}
+			>
+				Increase
+			</button>
+      <button
+				onClick={() => {setCount(count-1)}}
+			>
+				Decrease
+			</button>
+      <button
+				onClick={() => {setCount(0)}}
+			>
+				Set to zero
+			</button>
+		</div>
+	);
 }
 
 export default App;
