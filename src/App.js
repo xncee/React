@@ -1,6 +1,6 @@
 import ComponentExample from './1.0 Components and Props/ComponentExample';
 import CssExample from './2.0 CSS/CssExample'
-import ConditionalRender from './3.0 Conditional Rednering/ConditionalRender';
+import ConditionalRender from './3.0 Conditional Rendering/ConditionalRender';
 import { useState } from 'react';
 import ViewList from './4.0 Lists/ViewList';
 import UserCard from './4.0 Lists/UserCard';
