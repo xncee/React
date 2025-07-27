@@ -2,19 +2,6 @@ import {useState, useEffect} from 'react';
 import styles from './ToDo.module.css';
 import { CiEdit, CiTrash } from "react-icons/ci";
 
-// {text: "React Course -- 2 hours", completed: true },
-// {text: "Web development Course -- section 8+9", completed: false },
-// {text: "Clinxra -- design patient list UI", completed: false },
-// {text: "Fix appointment booking bug", completed: false },
-// {text: "Watch Git branching tutorial", completed: true },
-// {text: "Study database normalization", completed: false },
-// {text: "Workout -- push day", completed: true },
-// {text: "Refactor backend API for subscriptions", completed: false },
-// {text: "Review Tailwind CSS animations", completed: false },
-// {text: "Write README for Clinxra repo", completed: false },
-// {text: "Learn unit testing in React", completed: false },
-// {text: "Plan next sprint tasks", completed: false },
-
 const LOCAL_STORAGE_KEY = 'tasks';
 
 export default function ToDoList() {
