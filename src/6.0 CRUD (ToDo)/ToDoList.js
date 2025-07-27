@@ -102,6 +102,9 @@ function Task(props) {
 	const handleInputChange = (e) => {
         setEditText(e.target.value);
     }
+	const handleEdit = () => {
+		if (!isEditing) setEditing(true)
+	};
     const handleStatus = () => {
         props.changeStatus(!props.isCompleted);
     };
@@ -144,7 +147,10 @@ function Task(props) {
 				checked={props.isCompleted}
 				onChange={handleStatus}
 			/>
-			<div className={styles.taskText}>
+			<div
+				className={styles.taskText}
+				onDoubleClick={handleEdit}
+			>
 				{
 				isEditing
 				?
@@ -160,8 +166,8 @@ function Task(props) {
 				:
 					<span
 						style={{
-						color: props.isCompleted && "green",
-						textDecoration: props.isCompleted && "line-through"
+							color: props.isCompleted && "green",
+							textDecoration: props.isCompleted && "line-through"
 						}}
 					>
 						{props.text}
@@ -171,7 +177,7 @@ function Task(props) {
 			<div className={styles.buttonGroup}>
 				<button
 					className={styles.editButton}
-					onClick={() => !isEditing && setEditing(true)}
+					onClick={handleEdit}
 				>
 					<CiEdit />
 				</button>
