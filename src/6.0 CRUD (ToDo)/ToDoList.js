@@ -2,30 +2,40 @@ import {useState, useEffect} from 'react';
 import styles from './ToDo.module.css';
 import { CiEdit, CiTrash } from "react-icons/ci";
 
+// {text: "React Course -- 2 hours", completed: true },
+// {text: "Web development Course -- section 8+9", completed: false },
+// {text: "Clinxra -- design patient list UI", completed: false },
+// {text: "Fix appointment booking bug", completed: false },
+// {text: "Watch Git branching tutorial", completed: true },
+// {text: "Study database normalization", completed: false },
+// {text: "Workout -- push day", completed: true },
+// {text: "Refactor backend API for subscriptions", completed: false },
+// {text: "Review Tailwind CSS animations", completed: false },
+// {text: "Write README for Clinxra repo", completed: false },
+// {text: "Learn unit testing in React", completed: false },
+// {text: "Plan next sprint tasks", completed: false },
+
+const LOCAL_STORAGE_KEY = 'tasks';
+
 export default function ToDoList() {
     const [newTask, setNewTask] = useState('');
-	const [toDoList, setToDoList] = useState([
-		{ id: 1, text: "React Course -- 2 hours", completed: true },
-		{ id: 2, text: "Web development Course -- section 8+9", completed: false },
-		{ id: 3, text: "Clinxra -- design patient list UI", completed: false },
-		{ id: 4, text: "Fix appointment booking bug", completed: false },
-		{ id: 5, text: "Watch Git branching tutorial", completed: true },
-		{ id: 6, text: "Study database normalization", completed: false },
-		{ id: 7, text: "Workout -- push day", completed: true },
-		{ id: 8, text: "Refactor backend API for subscriptions", completed: false },
-		{ id: 9, text: "Review Tailwind CSS animations", completed: false },
-		{ id: 10, text: "Write README for Clinxra repo", completed: false },
-		{ id: 11, text: "Learn unit testing in React", completed: false },
-		{ id: 12, text: "Plan next sprint tasks", completed: false },
-	]);
+	const [toDoList, setToDoList] = useState(() => {
+		const storedList = localStorage.getItem(LOCAL_STORAGE_KEY);
+		console.log(storedList);
+		return storedList ? JSON.parse(storedList) : []
+    });
 
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(toDoList));
+    }, [toDoList]);
+	
 	const handleInputChange = (e) => {
 		setNewTask(e.target.value)
 	};
 
 	const addTask = () => {
 		const trimmedTask = newTask.trim();
-
+		
 		if (trimmedTask === '') return;
 		setToDoList([...toDoList, {text: trimmedTask, completed: false}]);
 		setNewTask('');
@@ -63,6 +73,7 @@ export default function ToDoList() {
 		<div>
 			<div className={styles.addTask}>
 				<input
+					autoFocus
 					className={styles.taskBar}
 					type="text"
 					value={newTask}
@@ -144,7 +155,6 @@ function Task(props) {
 				className={styles.taskCheckBox}
 				type="checkbox"
 				checked={props.isCompleted}
-				completed={props.isCompleted}
 				onChange={handleStatus}
 			/>
 			<div className={styles.taskText}>
