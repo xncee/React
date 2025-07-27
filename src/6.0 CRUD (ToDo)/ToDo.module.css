@@ -1,6 +1,8 @@
 .addTask {
-    margin: 0 auto;
-    text-align: center;
+    margin: 25px auto;
+    display: flex;
+    justify-content: center;
+    gap: 5px
 }
 
 .tasks {
@@ -12,7 +14,8 @@
     flex-direction: row;
     align-items: flex-start;
     font-family: "Roboto", sans-serif;
-    max-width: 500px;
+    width: 500px;
+    max-width: 90%;
     border: 1px dashed black;
     margin: 5px
 }
