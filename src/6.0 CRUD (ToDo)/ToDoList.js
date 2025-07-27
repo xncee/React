@@ -5,18 +5,18 @@ import { CiEdit, CiTrash } from "react-icons/ci";
 export default function ToDoList() {
     const [newTask, setNewTask] = useState('');
 	const [toDoList, setToDoList] = useState([
-		{ id: 1, text: "React Course -- 2 hours", done: true },
-		{ id: 2, text: "Web development Course -- section 8+9", done: false },
-		{ id: 3, text: "Clinxra -- design patient list UI", done: false },
-		{ id: 4, text: "Fix appointment booking bug", done: false },
-		{ id: 5, text: "Watch Git branching tutorial", done: true },
-		{ id: 6, text: "Study database normalization", done: false },
-		{ id: 7, text: "Workout -- push day", done: true },
-		{ id: 8, text: "Refactor backend API for subscriptions", done: false },
-		{ id: 9, text: "Review Tailwind CSS animations", done: false },
-		{ id: 10, text: "Write README for Clinxra repo", done: false },
-		{ id: 11, text: "Learn unit testing in React", done: false },
-		{ id: 12, text: "Plan next sprint tasks", done: false },
+		{ id: 1, text: "React Course -- 2 hours", completed: true },
+		{ id: 2, text: "Web development Course -- section 8+9", completed: false },
+		{ id: 3, text: "Clinxra -- design patient list UI", completed: false },
+		{ id: 4, text: "Fix appointment booking bug", completed: false },
+		{ id: 5, text: "Watch Git branching tutorial", completed: true },
+		{ id: 6, text: "Study database normalization", completed: false },
+		{ id: 7, text: "Workout -- push day", completed: true },
+		{ id: 8, text: "Refactor backend API for subscriptions", completed: false },
+		{ id: 9, text: "Review Tailwind CSS animations", completed: false },
+		{ id: 10, text: "Write README for Clinxra repo", completed: false },
+		{ id: 11, text: "Learn unit testing in React", completed: false },
+		{ id: 12, text: "Plan next sprint tasks", completed: false },
 	]);
 
 	const handleInputChange = (e) => {
@@ -27,7 +27,7 @@ export default function ToDoList() {
 		const trimmedTask = newTask.trim();
 
 		if (trimmedTask === '') return;
-		setToDoList([...toDoList, {text: trimmedTask, done: false}]);
+		setToDoList([...toDoList, {text: trimmedTask, completed: false}]);
 		setNewTask('');
 	};
 
@@ -44,7 +44,7 @@ export default function ToDoList() {
 		setToDoList(
 			toDoList.map((task, index) => {
 				return (index === i
-				? {...task, done: status}
+				? {...task, completed: status}
 				: task);
 			})
 		);
@@ -84,8 +84,8 @@ export default function ToDoList() {
 							<Task
 								key={i}
 								text={task["text"]}
-								isDone={task["done"]}
-								onCheck={(status) => {changeTaskStatus(i, status)}}
+								isCompleted={task["completed"]}
+								changeStatus={(status) => {changeTaskStatus(i, status)}}
 								onEdit={(newText) => {editTask(i, newText)}}
 								onDelete={() => {deleteTask(i)}}
 							/>
@@ -104,8 +104,8 @@ function Task(props) {
 	const handleInputChange = (e) => {
         setEditText(e.target.value);
     }
-    const handleCheck = () => {
-        props.onCheck(!props.isDone);
+    const handleStatus = () => {
+        props.changeStatus(!props.isCompleted);
     };
 
     const handleBlur = () => {
@@ -143,8 +143,9 @@ function Task(props) {
 			<input
 				className={styles.taskCheckBox}
 				type="checkbox"
-				checked={props.isDone}
-				onChange={handleCheck}
+				checked={props.isCompleted}
+				completed={props.isCompleted}
+				onChange={handleStatus}
 			/>
 			<div className={styles.taskText}>
 				{
@@ -162,8 +163,8 @@ function Task(props) {
 				:
 					<span
 						style={{
-						color: props.isDone && "green",
-						textDecoration: props.isDone && "line-through"
+						color: props.isCompleted && "green",
+						textDecoration: props.isCompleted && "line-through"
 						}}
 					>
 						{props.text}
@@ -173,7 +174,7 @@ function Task(props) {
 			<div className={styles.buttonGroup}>
 				<button
 					className={styles.editButton}
-					onClick={() => !isEditing &&setEditing(true)}
+					onClick={() => !isEditing && setEditing(true)}
 				>
 					<CiEdit />
 				</button>
