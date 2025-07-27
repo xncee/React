@@ -1,0 +1,53 @@
+.addTask {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tasks {
+    margin-top: 50px;
+}
+
+.task {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    font-family: "Roboto", sans-serif;
+    max-width: 500px;
+    border: 1px dashed black;
+    margin: 5px
+}
+.taskCheckBox {
+    cursor: pointer;
+    accent-color: green;
+}
+
+.taskText {
+    margin-right: 10px;
+    flex: 1;
+    word-break: break-word;
+}
+.taskEdit {
+    width: 100%;
+    resize: none;
+}
+
+.buttonGroup {
+    gap: 5px;
+    /* Prevents the button group from shrinking */
+}
+.editButton {
+    cursor: pointer;
+    background-color: transparent;
+    border-width: 0;
+    margin: 0;
+    color: purple;
+    margin-left: 5px
+}
+.deleteButton {
+    cursor: pointer;
+    background-color: transparent;
+    border-width: 0;
+    margin: 0;
+    color: red;
+    margin-left: 5px
+}
