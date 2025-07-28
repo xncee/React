@@ -60,7 +60,6 @@ export default function ToDoList() {
 		<div>
 			<div className={styles.addTask}>
 				<input
-					autoFocus
 					className={styles.taskBar}
 					type="text"
 					value={newTask}
