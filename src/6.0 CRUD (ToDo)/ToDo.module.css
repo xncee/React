@@ -96,7 +96,7 @@
     background: none;
     border: none;
     margin-left: 5px;
-    color: var(--color-secondary);
+    color: var(--color-accent);
     align-items: center;
 }
 .controlButton:hover {
@@ -110,9 +110,6 @@
 }
 .deleteButton {
     color: red;
-}
-.deleteButton:hover {
-    background-color: rgba(255, 0, 0, 0.1);
 }
 
 /* Responsive Design */

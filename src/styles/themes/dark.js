@@ -1,10 +1,9 @@
-
 const darkTheme = {
-  background: "#3e3f29",
-  primary: "#f0e4d4",
-  secondary: "#7d8d86",
-  accent: "#bca88d",
-  text: "#f0e4d4",
+  'background': '#2B2D2A',
+  'secondary': '#444D44',
+  'accent': '#9DAD7F',
+  'primary': '#F7F7E8',
+  'text': '#F7F7E8'
 };
 
 export default darkTheme;
