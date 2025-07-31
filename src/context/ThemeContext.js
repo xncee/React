@@ -4,7 +4,7 @@ import { themes } from '../styles/themes';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-    const [isDark, setIsDark] = useState(false);
+    const [isDark, setDark] = useState(false);
     const theme = isDark ? themes.dark : themes.light;
 
     // Inject CSS variables into the document root
@@ -15,9 +15,9 @@ export const ThemeProvider = ({ children }) => {
         });
     }, [theme]);
 
-    const toggleTheme = () => setIsDark(prev => !prev);
+    const toggleTheme = () => setDark(prev => !prev);
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme, isDark }}>
+        <ThemeContext.Provider value={{ theme, toggleTheme, isDark, setDark: setDark }}>
         {children}
         </ThemeContext.Provider>
     );
