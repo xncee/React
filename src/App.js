@@ -1,26 +1,30 @@
 
-import ToDoList from './6.0 CRUD (ToDo)/ToDoList';
+import ToDoListApp from './pages/ToDoListApp';
+import About from './pages/About';
+import Settings from './pages/Settings';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from '@vercel/analytics/react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { Home } from './pages/Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PageNotFound } from './pages/PageNotFound';
 import { NavBar } from './components/NavBar';
+import { ThemeProvider } from './context/ThemeContext';
+// import styles from './App.module.css';
 
 function App() {
 	return (
-        <div>
+        <ThemeProvider>
             <Analytics />
             <SpeedInsights />
             <Router>
                 <NavBar />
                 <Routes>
-                    <Route path='/' element={<Home />}/>
-                    <Route path='/todoapp' element={<ToDoList />}/>
+                    <Route path='/' element={<ToDoListApp />}/>
+                    <Route path='/about' element={<About />}/>
+                    <Route path='/settings' element={<Settings />}/>
                     <Route path='*' element={<PageNotFound />}/>
                 </Routes>
             </Router>
-        </div>
+        </ThemeProvider>
     );
 }
 
