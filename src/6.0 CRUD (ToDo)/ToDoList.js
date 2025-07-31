@@ -9,7 +9,6 @@ export default function ToDoList() {
     const [newTask, setNewTask] = useState('');
 	const [toDoList, setToDoList] = useState(() => {
 		const storedList = localStorage.getItem(LOCAL_STORAGE_KEY);
-		console.log(storedList);
 		return storedList ? JSON.parse(storedList) : []
     });
 

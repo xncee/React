@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PageNotFound } from './pages/PageNotFound';
 import { NavBar } from './components/NavBar';
 import { ThemeProvider } from './context/ThemeContext';
-import ThemeSwitcher from './components/ThemeSwitcher'
 // import styles from './App.module.css';
 
 function App() {
