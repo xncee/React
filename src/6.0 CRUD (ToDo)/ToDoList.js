@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import styles from './ToDo.module.css';
 import { CiEdit, CiTrash } from "react-icons/ci";
+import { useTheme } from '../context/ThemeContext';
 
 const LOCAL_STORAGE_KEY = 'tasks';
 
@@ -57,10 +58,14 @@ export default function ToDoList() {
 	}
 
 	return (
-		<div>
-			<div className={styles.addTask}>
+		<div id={styles.root}>
+			<h1 className={styles.header}>
+				ToDo List
+			</h1>
+			<div className={styles.addTaskContainer}>
 				<input
-					className={styles.taskBar}
+					className={styles.taskInput}
+					placeholder='Enter you task'
 					type="text"
 					value={newTask}
 					onChange={handleInputChange}
@@ -69,12 +74,13 @@ export default function ToDoList() {
 					}}
 				/>
 				<button
+					className={styles.addTaskBtn}
 					onClick={addTask}
 				>
 					Add task
 				</button>
 			</div>
-			<div className={styles.tasks}>
+			<div className={styles.tasksContainer}>
 				{
 					toDoList.map((task, i) => {
 						return (
@@ -95,6 +101,7 @@ export default function ToDoList() {
 }
 
 function Task(props) {
+	const { theme } = useTheme();
     const [editText, setEditText] = useState(props.text);
     const [isEditing, setEditing] = useState(false);
 
@@ -139,7 +146,10 @@ function Task(props) {
     }, [isEditing, editText]);
 
     return (
-        <div className={styles.task}>
+        <div
+			className={styles.task}
+			onDoubleClick={handleEdit}
+		>
 			<input
 				className={styles.taskCheckBox}
 				type="checkbox"
@@ -147,14 +157,13 @@ function Task(props) {
 				onChange={handleStatus}
 			/>
 			<div
-				className={styles.taskText}
-				onDoubleClick={handleEdit}
+				className={styles.taskContent}
 			>
 				{
 				isEditing
 				?
 					<textarea
-						className={`${styles.taskText} ${styles.taskEdit}`}
+						className={`${styles.taskContent} ${styles.taskEdit}`}
 						size={Math.max(2, editText.length)}
 						type='text'
 						value={editText}
@@ -165,7 +174,7 @@ function Task(props) {
 				:
 					<span
 						style={{
-							color: props.isCompleted && "green",
+							color: props.isCompleted && theme.secondary,
 							textDecoration: props.isCompleted && "line-through"
 						}}
 					>
@@ -175,16 +184,16 @@ function Task(props) {
 			</div>
 			<div className={styles.buttonGroup}>
 				<button
-					className={styles.editButton}
+					className={styles.controlButton}
 					onClick={handleEdit}
 				>
-					<CiEdit />
+					<CiEdit size={18}/>
 				</button>
 				<button
-					className={styles.deleteButton}
+					className={[styles.controlButton, styles.deleteButton].join(' ')}
 					onClick={props.onDelete}
 				>
-					<CiTrash />
+					<CiTrash size={18}/>
 				</button>
 			</div>
         </div>
